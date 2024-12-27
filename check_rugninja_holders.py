@@ -16,7 +16,10 @@ target_token_id = 2639168320
 
 application_boxes = algod_client.application_boxes(rug_ninja_app_id)['boxes']
 
+total_holders = 0
+
 for box in application_boxes:
+    
     decoded_box_name = b64decode(box['name'])
 
     if len(decoded_box_name) == 40:
@@ -31,5 +34,8 @@ for box in application_boxes:
                 b64decode(algod_client.application_box_by_name(rug_ninja_app_id, decoded_box_name)['value']),
                 'big'
             )
+
+            #If a box exists they are at least holding 1 token, otherwise the box autodeletes 
+            total_holders += 1
             
             print(f'Tokens Held by {address[:6]}... : {tokens_held:,.0f}')
