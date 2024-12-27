@@ -39,3 +39,5 @@ for box in application_boxes:
             total_holders += 1
             
             print(f'Tokens Held by {address[:6]}... : {tokens_held:,.0f}')
+
+print(f'Total Holders: {total_holders}')
